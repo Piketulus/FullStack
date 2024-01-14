@@ -20,7 +20,7 @@ app.listen(PORT, () => {
 app.get('/api/persons', (req, res) => {
   Person.find({}).then(persons => {
     res.json(persons)
-  })
+  }).catch(error => next(error))
 })
 
 app.get('/info', (req, res) => {
@@ -57,7 +57,7 @@ app.post('/api/persons', (request, response) => {
 
   person.save().then(savedPerson => {
     response.json(savedPerson)
-  })
+  }).catch(error => next(error))
 })
 
 app.put('/api/persons/:id', (request, response, next) => {
